@@ -543,13 +543,5 @@ describe('when calling .buildKingdomForDelegateLord()', function(){
         expect(frag).toEqual(document.createDocumentFragment());
     });
 
-    it("return document from root when built properly", function() {
-        var frag = kingdom.buildKingdomForDelegateLord();
-        var e1 = $(frag)
-        console.log(e1)
-        console.log(outer)
-        // console.log(inner)
-        expect(e1).toEqual(outer);
-    });
 
 });
