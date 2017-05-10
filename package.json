@@ -1,0 +1,29 @@
+{
+  "name": "kingdom",
+  "version": "1.0.0",
+  "description": "Framework to create elements using virtual dom",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "virtual",
+    "dom",
+    "javascript"
+  ],
+  "author": "Michael Montaque",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^2.6.0",
+    "jasmine-core": "^2.6.1",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-safari-launcher": "^1.0.0"
+  }
+}
