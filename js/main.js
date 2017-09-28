@@ -58,26 +58,30 @@
 
 
         var kingdom2 = new Kingdom();
-        kingdom2.addSubject({
+        var subject = kingdom2.addSubject({
             element: 'div',
             textAsHTML: '<span> awesome </span>',
             properties:{
-                className:'good',
-                id:'times'
+                onclick: function(){
+                    console.log('hello');
+                },
+                dataset:{hello:'me'}
+            },
+            setAttribute:{
+                id:'times',
+                'days-in-power': 1
             }
         },true)
-            .addSubject({
+            kingdom2.addSubject({
                 element:'span',
                 textAsString: 'nice'
             });
 
-
-
-        var DOM = kingdom2.buildKingdomForDelegateLord();
+        var DOM = kingdom2.buildKingdom();
 
         $('body').append(DOM)
     })
 
 
-})()
+})();
 

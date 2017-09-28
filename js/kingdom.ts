@@ -2,17 +2,19 @@
  * Created by mmontaque on 5/7/17.
  */
 
-interface Subject{
+
+export interface Subject{
     element: string,
     textAsHTML?: string,
     textAsString?: string,
     properties?: {},
+    setAttribute?:{},
     subjects?: Array <Subject>, //AKA: Children
 
 }
 
 
-class Kingdom {
+export class Kingdom {
     private king: Subject; //AKA: Root
     private _delegateLord : Subject; // AKA: Pointer
 
@@ -50,7 +52,7 @@ class Kingdom {
      * Internally moves the current node up one level. If the node is the parent then it does nothing
      * @return {Kingdom}
      */
-    parent():Kingdom{
+    getLord():Kingdom{
         let result : Subject | void;
 
         if(this._delegateLord === this.king)
@@ -156,7 +158,7 @@ class Kingdom {
      * @param startAtCurrent
      * @return {DocumentFragment}
      */
-    buildKingdomForDelegateLord(startAtCurrent: boolean) : DocumentFragment {
+    buildKingdom(startAtCurrent: boolean) : DocumentFragment {
         // Keep reference to the current delegate lord
         let currentLord = this._delegateLord;
 
@@ -207,7 +209,7 @@ class Kingdom {
 
         // determine which element to which to append
         if(elementTuple[1])
-            element = fragment.firstElementChild;
+            element = <any>fragment.firstElementChild;
         else
             element =  fragment;
 
@@ -240,7 +242,8 @@ class Kingdom {
             element.innerText =  data.textAsString;
 
 
-        this.recursivePropertyAccessCopy(element, data.properties);
+        this.setPropertiesAndAttributes(element, data.properties, data.setAttribute);
+
 
         fragment.appendChild(element);
 
@@ -248,10 +251,16 @@ class Kingdom {
 
     }
 
-    private recursivePropertyAccessCopy(el : Element, prop: any){
+    private setPropertiesAndAttributes(el : Element, prop: any, attr?: any){
 
         if(!prop || typeof prop !== 'object'){
             return
+        }
+
+
+        for(let key in attr){
+            var val = attr[key];
+            el.setAttribute(key, val);
         }
 
         for(let key in prop){
@@ -260,15 +269,16 @@ class Kingdom {
             var val = prop[key];
 
             // if the type is an object recursively try again
-            if(typeof val === 'object')
-                this.recursivePropertyAccessCopy(el[key], val);
+            if(typeof val === 'object' && typeof val !== 'function')
+                this.setPropertiesAndAttributes(el[key], val);
 
             // otherwise set the value in the element
-            else if(typeof val !== 'object' && typeof val !== 'function'){
-                el[key] = val;
+            else {
+                el[key] = val
             }
         }
     }
+
 
     private checkSubjectAtIndex(index: number):boolean{
 
@@ -284,3 +294,5 @@ class Kingdom {
         return false
     }
 }
+
+

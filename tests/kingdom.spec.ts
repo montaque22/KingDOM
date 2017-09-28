@@ -1,6 +1,10 @@
 /**
+ * Created by mmontaque on 5/10/17.
+ */
+/**
  * Created by mmontaque on 5/9/17.
  */
+import {Kingdom} from '../../lib/kingdom'
 
 var params = {
     element: 'div',

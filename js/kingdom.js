@@ -1,14 +1,13 @@
 /**
  * Created by mmontaque on 5/7/17.
  */
-var Kingdom = (function () {
+export class Kingdom {
     /**
      * @constructor
      * Create an empty kingdom. If data is supplied then it is made the root node.
      * @param subject
      */
-    function Kingdom(subject) {
-        if (subject === void 0) { subject = { element: '', subjects: [] }; }
+    constructor(subject = { element: '', subjects: [] }) {
         if (typeof subject !== "object" || Array.isArray(subject))
             throw new Error("Constructor did not receive the expected type object");
         // Make sure the subject has its subjects initialized
@@ -18,23 +17,19 @@ var Kingdom = (function () {
         // the delegate lord is also the king since the king has no subjects to be delegate lord
         this._delegateLord = this.king;
     }
-    Object.defineProperty(Kingdom.prototype, "delegateLord", {
-        /**
-         * Retrieves the current node
-         * @return {Subject}
-         */
-        get: function () {
-            return this._delegateLord;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    /**
+     * Retrieves the current node
+     * @return {Subject}
+     */
+    get delegateLord() {
+        return this._delegateLord;
+    }
     /**
      * Internally moves the current node up one level. If the node is the parent then it does nothing
      * @return {Kingdom}
      */
-    Kingdom.prototype.parent = function () {
-        var result;
+    getLord() {
+        let result;
         if (this._delegateLord === this.king)
             return this;
         else
@@ -42,14 +37,14 @@ var Kingdom = (function () {
         if (this.isSubject(result))
             this._delegateLord = result;
         return this;
-    };
+    }
     /**
      * Adds data as a child to the current node. if makeLord is true then the given subject becomes the new current node
      * @param subject
      * @param makeLord
      * @return {Kingdom}
      */
-    Kingdom.prototype.addSubject = function (subject, makeLord) {
+    addSubject(subject, makeLord) {
         if (typeof subject !== "object" || Array.isArray(subject))
             throw new Error("addSubject did not receive the expected type object");
         subject.subjects = subject.subjects || [];
@@ -62,93 +57,92 @@ var Kingdom = (function () {
         if (makeLord)
             this._delegateLord = subject;
         return this;
-    };
+    }
     /**
      * Internally changes the current node to the child at the given index. The current node remains the same on failure
      * @param index
      * @return {Kingdom}
      */
-    Kingdom.prototype.gotoSubjectAtIndex = function (index) {
-        var youCanProceed = this.checkSubjectAtIndex(index);
+    gotoSubjectAtIndex(index) {
+        const youCanProceed = this.checkSubjectAtIndex(index);
         if (youCanProceed)
             this._delegateLord = this._delegateLord.subjects[index];
         return this;
-    };
+    }
     /**
      * Internally changes the current node to the root node
      * @return {Kingdom}
      */
-    Kingdom.prototype.gotoKing = function () {
+    gotoKing() {
         this._delegateLord = this.king;
         return this;
-    };
+    }
     /**
      * Removes the child at the specified index. Returns false on failure.
      * @param index
      * @return {boolean}
      */
-    Kingdom.prototype.detachSubjectAtIndex = function (index) {
-        var youCanProceed = this.checkSubjectAtIndex(index);
+    detachSubjectAtIndex(index) {
+        const youCanProceed = this.checkSubjectAtIndex(index);
         if (youCanProceed)
             this._delegateLord.subjects.splice(index, 1);
         return youCanProceed;
-    };
+    }
     /**
      * Removes all the children of the current node.
      * @return {Kingdom}
      */
-    Kingdom.prototype.detachAllSubjectsForCurrentLord = function () {
+    detachAllSubjectsForCurrentLord() {
         this._delegateLord.subjects = [];
         return this;
-    };
+    }
     /**
      * Removes all the nodes and internally resets the current node to point to the root.
      * @return {Kingdom}
      */
-    Kingdom.prototype.destroyKingdom = function () {
+    destroyKingdom() {
         this.king = this.getSmallestSubject();
         this._delegateLord = this.king;
         return this;
-    };
+    }
     /**
      * returns the DOM structure starting at the root node. If startAtCurrent is true then generates the DOM from
      * the current node instead.
      * @param startAtCurrent
      * @return {DocumentFragment}
      */
-    Kingdom.prototype.buildKingdomForDelegateLord = function (startAtCurrent) {
+    buildKingdom(startAtCurrent) {
         // Keep reference to the current delegate lord
-        var currentLord = this._delegateLord;
+        let currentLord = this._delegateLord;
         // determine which point to start from
-        var subject = startAtCurrent && this._delegateLord || this.gotoKing() && this._delegateLord;
+        let subject = startAtCurrent && this._delegateLord || this.gotoKing() && this._delegateLord;
         // return the delegate lord back to normal
         this._delegateLord = currentLord;
         // Build!!
         return this.build(subject);
-    };
-    Kingdom.prototype.isSubject = function (subject) {
+    }
+    isSubject(subject) {
         return subject.element !== undefined;
-    };
-    Kingdom.prototype.findParentOfChild = function (child, delegateLord) {
+    }
+    findParentOfChild(child, delegateLord) {
         if (!!delegateLord && !!delegateLord.subjects) {
             if (delegateLord.subjects.indexOf(child) >= 0)
                 return delegateLord;
-            for (var _i = 0, _a = delegateLord.subjects; _i < _a.length; _i++) {
-                var subject = _a[_i];
-                var result = this.findParentOfChild(child, subject);
+            for (let subject of delegateLord.subjects) {
+                let result = this.findParentOfChild(child, subject);
                 if (result)
                     return result;
             }
         }
-    };
-    Kingdom.prototype.getSmallestSubject = function () {
+    }
+    getSmallestSubject() {
         return { element: '', subjects: [] };
-    };
-    Kingdom.prototype.build = function (delegateLord) {
+    }
+    build(delegateLord) {
         // Create a tuple containing the HTML fragment and boolean indicating if fragment contains an element
-        var elementTuple = this.createSelf(delegateLord);
-        var fragment = elementTuple[0];
-        var element;
+        let elementTuple = this.createSelf(delegateLord);
+        let fragment = elementTuple[0];
+        let element;
         // determine which element to which to append
         if (elementTuple[1])
             element = fragment.firstElementChild;
@@ -156,44 +150,47 @@ var Kingdom = (function () {
             element = fragment;
         if (!!delegateLord.subjects && !!element) {
             // Go through the subjects of the delegate lord and have each build a kingdom to add
-            for (var _i = 0, _a = delegateLord.subjects; _i < _a.length; _i++) {
-                var subject = _a[_i];
+            for (let subject of delegateLord.subjects) {
                 console.log(element);
                 element.appendChild(this.build(subject));
             }
         }
         return fragment;
-    };
-    Kingdom.prototype.createSelf = function (data) {
-        var fragment = document.createDocumentFragment();
+    }
+    createSelf(data) {
+        let fragment = document.createDocumentFragment();
         // If there is no element to create then return a fragment
         if (!data.element)
             return [fragment, false];
-        var element = document.createElement(data.element);
+        let element = document.createElement(data.element);
         if (!!data.textAsHTML)
             element.innerHTML = data.textAsHTML;
         else if (!!data.textAsString)
             element.innerText = data.textAsString;
-        this.recursivePropertyAccessCopy(element, data.properties);
+        this.setPropertiesAndAttributes(element, data.properties, data.setAttribute);
         fragment.appendChild(element);
         return [fragment, true];
-    };
-    Kingdom.prototype.recursivePropertyAccessCopy = function (el, prop) {
+    }
+    setPropertiesAndAttributes(el, prop, attr) {
         if (!prop || typeof prop !== 'object') {
             return;
         }
-        for (var key in prop) {
+        for (let key in attr) {
+            var val = attr[key];
+            el.setAttribute(key, val);
+        }
+        for (let key in prop) {
             // get the value for key in the property we are copying
             var val = prop[key];
             // if the type is an object recursively try again
-            if (typeof val === 'object')
-                this.recursivePropertyAccessCopy(el[key], val);
-            else if (typeof val !== 'object' && typeof val !== 'function') {
+            if (typeof val === 'object' && typeof val !== 'function')
+                this.setPropertiesAndAttributes(el[key], val);
+            else {
                 el[key] = val;
             }
         }
-    };
-    Kingdom.prototype.checkSubjectAtIndex = function (index) {
+    }
+    checkSubjectAtIndex(index) {
         if (isNaN(index) || Array.isArray(index))
             throw new Error('The index given was not a number');
         else if (this._delegateLord.subjects && this._delegateLord.subjects.length > index)
@@ -201,7 +198,6 @@ var Kingdom = (function () {
         else
             console.error('There are no subjects at index = ', index);
         return false;
-    };
-    return Kingdom;
-}());
+    }
+}
 //# sourceMappingURL=kingdom.js.map
