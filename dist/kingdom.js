@@ -874,8 +874,8 @@ var Kingdom = exports.Kingdom = function () {
             return this.build(subject);
         }
     }, {
-        key: "createBlueprint",
-        value: function createBlueprint() {
+        key: "createCensus",
+        value: function createCensus() {
             return (0, _stringify2.default)(this.king, null, 4);
         }
     }, {
