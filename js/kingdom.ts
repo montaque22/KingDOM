@@ -173,7 +173,7 @@ export class Kingdom {
     }
 
 
-    createBlueprint(): string{
+    createCensus(): string{
         return JSON.stringify(this.king, null, 4);
     }
 

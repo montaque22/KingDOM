@@ -37,7 +37,7 @@ $('#subject').on('click',function(){
 
 $('#subject-lord').on('click',function(){
     kingdom = kingdom.addSubject({...SUBJECT_LORD}, true);
-    updateObjectGraph(kingdom.createBlueprint())
+    updateObjectGraph(kingdom.createCensus())
 });
 
 $('#render').on('click',function(){

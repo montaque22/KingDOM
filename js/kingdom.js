@@ -121,7 +121,7 @@ export class Kingdom {
         // Build!!
         return this.build(subject);
     }
-    createBlueprint() {
+    createCensus() {
         return JSON.stringify(this.king, null, 4);
     }
     isSubject(subject) {
