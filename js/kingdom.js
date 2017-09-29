@@ -5,7 +5,7 @@ export class Kingdom {
     /**
      * @constructor
      * Create an empty kingdom. If data is supplied then it is made the root node.
-     * @param subject
+     * @param {Subject} subject - the given subject will initialize the kingdom and become king (root node)
      */
     constructor(subject = { element: '', subjects: [] }) {
         if (typeof subject !== "object" || Array.isArray(subject))
@@ -40,8 +40,9 @@ export class Kingdom {
     }
     /**
      * Adds data as a child to the current node. if makeLord is true then the given subject becomes the new current node
-     * @param subject
-     * @param makeLord
+     * @param {Subject} subject - the element you want to add
+     * @param {Boolean} makeLord - if true, sets the given subject as lord (current node) and subsequent calls to
+     * addSubject will be assigned to this current subject
      * @return {Kingdom}
      */
     addSubject(subject, makeLord) {
@@ -60,10 +61,10 @@ export class Kingdom {
     }
     /**
      * Internally changes the current node to the child at the given index. The current node remains the same on failure
-     * @param index
+     * @param {Numbder} index - index of the subject you want to make current node
      * @return {Kingdom}
      */
-    gotoSubjectAtIndex(index) {
+    makeSubjectLordAtIndex(index) {
         const youCanProceed = this.checkSubjectAtIndex(index);
         if (youCanProceed)
             this._delegateLord = this._delegateLord.subjects[index];
@@ -78,9 +79,9 @@ export class Kingdom {
         return this;
     }
     /**
-     * Removes the child at the specified index. Returns false on failure.
-     * @param index
-     * @return {boolean}
+     * Removes the {Subject} at the specified index. Returns false on failure.
+     * @param {Number} index - index of the {Subject} you want to remove
+     * @return {boolean} - returns true on success
      */
     detachSubjectAtIndex(index) {
         const youCanProceed = this.checkSubjectAtIndex(index);
@@ -92,7 +93,7 @@ export class Kingdom {
      * Removes all the children of the current node.
      * @return {Kingdom}
      */
-    detachAllSubjectsForCurrentLord() {
+    banishSubjectsForCurrentLord() {
         this._delegateLord.subjects = [];
         return this;
     }
@@ -108,8 +109,8 @@ export class Kingdom {
     /**
      * returns the DOM structure starting at the root node. If startAtCurrent is true then generates the DOM from
      * the current node instead.
-     * @param startAtCurrent
-     * @return {DocumentFragment}
+     * @param {boolean} startAtCurrent - only renders from the current node down
+     * @return {DocumentFragment} returns the DOM
      */
     buildKingdom(startAtCurrent) {
         // Keep reference to the current delegate lord
@@ -121,6 +122,13 @@ export class Kingdom {
         // Build!!
         return this.build(subject);
     }
+    /**
+     * returns the virtual dom as a string.
+     * It will not include functions or complex structures
+     * not supported by JSON.stringify and JSON.parse
+     *
+     * @return {string} stringify version of the virtual DOM
+     */
     createCensus() {
         return JSON.stringify(this.king, null, 4);
     }

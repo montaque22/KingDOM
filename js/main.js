@@ -26,13 +26,13 @@ $('#king').on('click',function(){
     $('#menus').show();
     $('.king-btn').hide();
     kingdom = new Kingdom({...KING});
-    updateObjectGraph(kingdom.createBlueprint())
+    updateObjectGraph(kingdom.createCensus())
 
 });
 
 $('#subject').on('click',function(){
     kingdom = kingdom.addSubject({...SUBJECT});
-    updateObjectGraph(kingdom.createBlueprint())
+    updateObjectGraph(kingdom.createCensus())
 });
 
 $('#subject-lord').on('click',function(){
