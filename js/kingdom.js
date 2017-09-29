@@ -83,7 +83,7 @@ export class Kingdom {
      * @param {Number} index - index of the {Subject} you want to remove
      * @return {boolean} - returns true on success
      */
-    detachSubjectAtIndex(index) {
+    banishSubjectAtIndex(index) {
         const youCanProceed = this.checkSubjectAtIndex(index);
         if (youCanProceed)
             this._delegateLord.subjects.splice(index, 1);

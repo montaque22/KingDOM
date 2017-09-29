@@ -130,7 +130,7 @@ export class Kingdom {
      * @param {Number} index - index of the {Subject} you want to remove
      * @return {boolean} - returns true on success
      */
-    detachSubjectAtIndex(index: number) : boolean {
+    banishSubjectAtIndex(index: number) : boolean {
         const youCanProceed = this.checkSubjectAtIndex(index);
 
         if(youCanProceed)

@@ -1,3 +1,4 @@
+Work in progress...
 
 ### Table of Contents
 
@@ -7,7 +8,7 @@
     -   [addSubject](#addsubject)
     -   [makeSubjectLordAtIndex](#makesubjectlordatindex)
     -   [gotoKing](#gotoking)
-    -   [detachSubjectAtIndex](#detachsubjectatindex)
+    -   [banishSubjectAtIndex](#banishsubjectatindex)
     -   [banishSubjectsForCurrentLord](#banishsubjectsforcurrentlord)
     -   [destroyKingdom](#destroykingdom)
     -   [buildKingdom](#buildkingdom)
@@ -61,7 +62,7 @@ Internally changes the current node to the root node
 
 Returns **[Kingdom](#kingdom)** 
 
-### detachSubjectAtIndex
+### banishSubjectAtIndex
 
 Removes the {Subject} at the specified index. Returns false on failure.
 
