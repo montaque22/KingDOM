@@ -8,7 +8,7 @@ export interface Subject{
     textAsHTML?: string,
     textAsString?: string,
     properties?: {},
-    setAttribute?:{},
+    setAttributes?:{},
     subjects?: Array <Subject>, //AKA: Children
 
 }
@@ -173,6 +173,10 @@ export class Kingdom {
     }
 
 
+    createBlueprint(): string{
+        return JSON.stringify(this.king, null, 4);
+    }
+
 
     private isSubject(subject : Subject | any) : subject is Subject{
         return (<Subject> subject).element !== undefined;
@@ -242,7 +246,7 @@ export class Kingdom {
             element.innerText =  data.textAsString;
 
 
-        this.setPropertiesAndAttributes(element, data.properties, data.setAttribute);
+        this.setPropertiesAndAttributes(element, data.properties, data.setAttributes);
 
 
         fragment.appendChild(element);
@@ -252,11 +256,6 @@ export class Kingdom {
     }
 
     private setPropertiesAndAttributes(el : Element, prop: any, attr?: any){
-
-        if(!prop || typeof prop !== 'object'){
-            return
-        }
-
 
         for(let key in attr){
             var val = attr[key];

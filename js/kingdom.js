@@ -121,6 +121,9 @@ export class Kingdom {
         // Build!!
         return this.build(subject);
     }
+    createBlueprint() {
+        return JSON.stringify(this.king, null, 4);
+    }
     isSubject(subject) {
         return subject.element !== undefined;
     }
@@ -167,14 +170,11 @@ export class Kingdom {
             element.innerHTML = data.textAsHTML;
         else if (!!data.textAsString)
             element.innerText = data.textAsString;
-        this.setPropertiesAndAttributes(element, data.properties, data.setAttribute);
+        this.setPropertiesAndAttributes(element, data.properties, data.setAttributes);
         fragment.appendChild(element);
         return [fragment, true];
     }
     setPropertiesAndAttributes(el, prop, attr) {
-        if (!prop || typeof prop !== 'object') {
-            return;
-        }
         for (let key in attr) {
             var val = attr[key];
             el.setAttribute(key, val);
