@@ -237,7 +237,6 @@ export class Kingdom {
         if(!!delegateLord.subjects && !!element){
             // Go through the subjects of the delegate lord and have each build a kingdom to add
             for(let subject of delegateLord.subjects){
-                console.log(element)
                 element.appendChild(this.build(subject))
             }
         }
@@ -304,7 +303,7 @@ export class Kingdom {
             return true;
 
         else
-            console.error('There are no subjects at index = ', index);
+            console.warn('There are no subjects at index = ', index);
 
         return false
     }

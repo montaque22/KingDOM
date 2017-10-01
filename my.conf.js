@@ -15,8 +15,8 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
-            './lib/kingdom.ts',
-            './js/tests/**/*[sS]pec.ts',
+            './dist/kingdom.js',
+            './tests/**/*[sS]pec.js',
             './js/vendor/**/*.js',
         ],
 
@@ -37,8 +37,8 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            './lib/kingdom.ts'      : ['coverage',"karma-typescript"],
-            './js/tests/**/*[sS]pec.ts'    : ["karma-typescript"]
+            './dist/kingdom.js'      : ['coverage'],
+            // './js/tests/**/*[sS]pec.ts'    : ["karma-typescript"]
         },
 
 
