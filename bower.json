@@ -1,0 +1,22 @@
+{
+  "name": "king-doms",
+  "description": "Framework to create elements using virtual dom",
+  "main": "./dist/kingdom.js",
+  "authors": [
+    "Michael Montaque"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "virtual",
+    "dom",
+    "javascript"
+  ],
+  "homepage": "https://github.com/montaque22/KingDOM",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -76,7 +76,7 @@ methods to spare your eyes of all the kitchiness. [To see the docs check out the
   [But if you are interested in learning more about the framework check out the small demo.]() 
   
   
-  #Installation
+  # Installation
   
   This project was written in typescript and exported to UMD. Feel free to use the UMD version in the dist folder or 
   you can use the typescript version if your project can bare it. Because this project uses the DOM it does not work 
@@ -85,16 +85,16 @@ methods to spare your eyes of all the kitchiness. [To see the docs check out the
   
   
 ```bash
-npm install kingdom --save
+npm install king-dom --save
 ```
 
 ```bash
-yarn add kingdom 
+yarn add king-dom 
 ```
 
 
 ```bash
-bower install kingdom 
+bower install king-doms
 ```
   
 
