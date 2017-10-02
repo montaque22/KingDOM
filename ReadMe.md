@@ -71,9 +71,8 @@ This will render the following:
 
 This framework is simple, but admittedly the method names are kinda kitchy and may weird to remember methods but 
 once you get the theme everything will make perfect sense. If you don't care, that's cool too. I've documented all the 
-methods to spare your eyes of all the kitchiness. [To see the docs check out the documentation folder.](./documentation/index.html)
+methods to spare your eyes of all the kitchiness. [To see the docs check out the documentation folder.](https://github.com/montaque22/KingDOM/blob/master/markdown/kingdom_api.md)
   
-  [But if you are interested in learning more about the framework check out the small demo.]() 
   
   
   # Installation
