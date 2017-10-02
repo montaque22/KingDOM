@@ -1,3 +1,9 @@
 language: node_js
 node_js:
-  - "6"
+    - "6"
+install:
+    - npm install ts-node -g
+    - npm install
+script:
+    - test
+    - test
