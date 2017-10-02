@@ -9,7 +9,7 @@
     },
     "scripts": {
         "test": "./node_modules/.bin/ts-mocha test/*.ts",
-        "build:prod": "node_modules/.bin/webpack --config webpack.config.js"
+        "build:prod": "PRODUCTION=true node_modules/.bin/webpack --config webpack.config.js"
     },
     "keywords": [
         "virtual",
@@ -33,6 +33,7 @@
         "mocha": "^3.5.3",
         "sugar": "^2.0.4",
         "ts-mocha": "^1.0.3",
+        "typedoc-markdown-theme": "0.0.4",
         "typescript": "^2.5.3",
         "webpack": "^3.6.0"
     },
