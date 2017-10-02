@@ -8,7 +8,7 @@
         "doc": "doc"
     },
     "scripts": {
-        "test": "TS_NODE_CACHE=true TS_NODE_DISABLE_WARNINGS=true mocha --compilers ts:node_modules/ts-node/register tests/main.ts ",
+        "test": "TS_NODE_CACHE=true TS_NODE_DISABLE_WARNINGS=true mocha --compilers ts:node_modules/ts-node/register",
         "build:prod": "node_modules/.bin/webpack --config webpack.config.js"
     },
     "keywords": [

@@ -16,7 +16,7 @@ module.exports = function(config) {
         // list of files / patterns to load in the browser
         files: [
             './dist/kingdom.js',
-            './tests/**/*[sS]pec.js',
+            'test/**/*[sS]pec.js',
             './js/vendor/**/*.js',
         ],
 

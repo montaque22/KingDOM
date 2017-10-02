@@ -5,7 +5,7 @@ module.exports = function(config) {
             // 'node_modules/chai/chai.js',
             // 'node_modules/sugar/index.js',
             'js/kingdom.ts',
-            'tests/main.ts'
+            'test/main.ts'
         ],
         plugins:[
             'karma-chai',

@@ -7,7 +7,7 @@ module.exports = function (wallaby) {
         ],
 
         tests: [
-            { pattern: 'tests/main.ts'}
+            { pattern: 'test/main.ts'}
         ],
 
         testFramework: 'mocha',
