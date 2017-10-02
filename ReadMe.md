@@ -94,7 +94,7 @@ yarn add king-dom
 
 
 ```bash
-bower install king-doms
+bower install king-doms --save
 ```
   
 
