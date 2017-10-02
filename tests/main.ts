@@ -1,13 +1,14 @@
-/**
- * Created by mmontaque on 5/10/17.
- */
-/**
- * Created by mmontaque on 5/9/17.
- */
+/// <reference path="../node_modules/@types/mocha/index.d.ts" />
 
-const expect    = chai.expect;
+import {Kingdom, Subject} from "../js/kingdom";
+import {expect} from "chai"
+import {JSDOM} from 'jsdom'
+import * as Sugar from 'sugar'
+const {window} = new JSDOM(``);
 
-function getParams(){
+global['document'] = window.document;
+
+function getParams(): Subject{
     var params = {
         element: 'div',
         textAsString: 'Hello',
@@ -63,7 +64,7 @@ function getParams(){
                 }]
             }]
     };
-    return Sugar.Object.clone(params, true)
+    return <Subject>Sugar.Object.clone(params, true)
 }
 
 describe('KingDOM Tests', function(){
@@ -534,5 +535,3 @@ describe('KingDOM Tests', function(){
 
     });
 });
-
-

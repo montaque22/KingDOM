@@ -22,7 +22,6 @@ export interface Subject{
 
 }
 
-
 export class Kingdom {
     private king: Subject; //AKA: Root
     private _delegateLord : Subject; // AKA: Pointer
