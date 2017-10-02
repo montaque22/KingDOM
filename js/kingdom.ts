@@ -1,6 +1,9 @@
 /**
  * Created by mmontaque on 5/7/17.
+ * @description
+ * Creates an virtual DOM to minimize expensive DOM interactions.
  */
+
 
 
 /**
@@ -21,6 +24,7 @@ export interface Subject{
     subjects?: Array <Subject>, //AKA: Children
 
 }
+
 
 export class Kingdom {
     private king: Subject; //AKA: Root

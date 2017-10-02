@@ -32,14 +32,9 @@
         "jsdom": "^11.3.0",
         "mocha": "^3.5.3",
         "sugar": "^2.0.4",
-        "ts-babel-node": "^1.1.1",
-        "ts-loader": "^2.3.7",
         "ts-mocha": "^1.0.3",
         "typescript": "^2.5.3",
-        "wallaby-webpack": "^0.0.42",
         "webpack": "^3.6.0"
     },
-    "dependencies": {
-        "ts-node": "^3.3.0"
-    }
+    "dependencies": {}
 }
